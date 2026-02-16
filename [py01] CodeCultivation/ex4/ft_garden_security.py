@@ -7,15 +7,15 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/16 13:05:07 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/16 18:54:01 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/02/16 23:24:56 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
 class Plant:
     def __init__(self, name: str, height: int, age: int) -> None:
         self.name = name
-        self.height = height
-        self.age = age
+        self.height = 0
+        self.age = 0
         print(f"Plant created: {self.get_name()}")
         self.set_height(height)
         self.set_age(age)
