@@ -7,7 +7,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/16 16:47:57 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/16 19:03:06 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/02/16 22:27:13 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -25,12 +25,14 @@ class Flower(Plant):
     def __init__(self, name: str, height: int, age: int, color: str) -> None:
         super().__init__(name, height, age)
         self.color = color
+        self.is_blooming = False
 
     def get_info(self) -> str:
         return (f"{self.name} (Flower): {self.height}cm, "
                 f"{self.age} days, {self.color} color")
 
     def bloom(self) -> None:
+        self.is_blooming = True
         print(f"{self.name} is blooming beautifully!")
 
 
