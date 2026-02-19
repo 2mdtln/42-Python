@@ -6,11 +6,11 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/12 19:13:27 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/14 21:39:29 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/02/19 18:47:42 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
-def ft_plant_age():
+def ft_plant_age() -> None:
     days = int(input("Enter plant age in days: "))
     if (days > 60):
         print("Plant is ready to harvest!")

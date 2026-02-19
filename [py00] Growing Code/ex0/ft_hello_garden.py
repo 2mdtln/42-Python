@@ -6,9 +6,9 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/08 21:45:05 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/14 21:39:21 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/02/19 18:47:18 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
-def ft_hello_garden():
+def ft_hello_garden() -> None:
     print("Hello, Garden Community!")
