@@ -6,11 +6,11 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/18 11:37:19 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/18 12:15:46 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/02/23 17:49:39 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
-def check_temperature(temp_str: str):
+def check_temperature(temp_str: str) -> None:
     try:
         temp = int(temp_str)
         if temp > 0 and temp < 40:

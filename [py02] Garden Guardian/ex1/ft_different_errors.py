@@ -6,12 +6,12 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/18 12:12:31 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/21 22:22:03 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/02/23 17:49:19 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
 def garden_operations(op: str, string: str = "str", integer: int = 42,
-                      file: str = "file.txt", key: str = "name"):
+                      file: str = "file.txt", key: str = "name") -> int:
     return_val = 0
     if op in ("int", "all"):
         return_val = int(string)
@@ -26,7 +26,7 @@ def garden_operations(op: str, string: str = "str", integer: int = 42,
     return return_val
 
 
-def test_error_types():
+def test_error_types() -> None:
     print("\nTesting ValueError...")
     try:
         garden_operations(op="int", string="aaa")
