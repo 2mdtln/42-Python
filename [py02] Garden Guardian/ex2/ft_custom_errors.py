@@ -6,7 +6,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/21 22:17:40 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/23 17:49:00 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/02/26 10:39:44 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -27,13 +27,13 @@ class Plant:
         self.__name = name
         self.__status = status
 
-    def get_status(self):
+    def get_status(self) -> str:
         return self.__status
 
-    def get_name(self):
+    def get_name(self) -> str:
         return self.__name
 
-    def set_status(self, status: str):
+    def set_status(self, status: str) -> None:
         self.__status = status
         if self.__status == "wilting":
             raise PlantError(f"The {self.__name} plant is wilting!")

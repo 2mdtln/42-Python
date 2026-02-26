@@ -6,7 +6,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/23 16:08:07 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/23 17:48:51 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/02/26 10:40:22 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -15,13 +15,13 @@ class Plant:
         self.__name = name
         self.__watered = False
 
-    def get_name(self):
+    def get_name(self) -> str:
         return self.__name
 
-    def water(self):
+    def water(self) -> None:
         self.__watered = True
 
-    def is_watered(self):
+    def is_watered(self) -> bool:
         return self.__watered
 
 
