@@ -6,7 +6,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/23 18:13:37 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/23 21:02:08 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/02/27 07:51:15 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -49,23 +49,23 @@ class Plant:
         return self.__sun_level
 
     def check_health(self) -> None:
-        if not self.get_name():
+        if not self.__name:
             raise PlantHealthError("Plant name cannot be empty!")
-        elif self.get_water_level() > 10:
-            raise PlantHealthError(f"Water level {self.get_water_level()}"
+        elif self.__water_level > 10:
+            raise PlantHealthError(f"Water level {self.__water_level}"
                                    f" is too high (max 10)")
-        elif self.get_water_level() < 1:
-            raise PlantHealthError(f"Water level {self.get_water_level()}"
+        elif self.__water_level < 1:
+            raise PlantHealthError(f"Water level {self.__water_level}"
                                    f" is too low (min 1)")
-        elif self.get_sun_level() < 2:
-            raise PlantHealthError(f"Sunlight hours {self.get_sun_level()}"
+        elif self.__sun_level < 2:
+            raise PlantHealthError(f"Sunlight hours {self.__sun_level}"
                                    f" is too low (min 2)")
-        elif self.get_sun_level() > 12:
-            raise PlantHealthError(f"Sunlight hours {self.get_sun_level()} "
+        elif self.__sun_level > 12:
+            raise PlantHealthError(f"Sunlight hours {self.__sun_level} "
                                    f"is too high (max 12)")
         else:
-            print(f"{self.get_name()}: healthy (water: "
-                  f"{self.get_water_level()}, sun: {self.get_sun_level()})")
+            print(f"{self.__name}: healthy (water: "
+                  f"{self.__water_level}, sun: {self.__sun_level})")
 
 
 class GardenManager:
@@ -95,9 +95,9 @@ class GardenManager:
         for plant in cls._plants:
             plant.sun()
             if cls._is_watering:
-                cls._tank -= 4.2
-                if cls._tank < 0:
+                if cls._tank - 4.2 < 0:
                     raise WaterError("Not enough water in tank!")
+                cls._tank -= 4.2
                 plant.water()
 
     @classmethod
@@ -105,9 +105,7 @@ class GardenManager:
         return cls._plants
 
 
-if __name__ == "__main__":
-    print("=== Garden Management System ===")
-    plants = [Plant("Rose"), Plant("Cherry"), Plant("Lotus"), Plant("")]
+def test_garden_management(plants: Plant) -> None:
     print("\nAdding plants to garden...")
     for plant in plants:
         try:
@@ -138,4 +136,10 @@ if __name__ == "__main__":
     finally:
         GardenManager.stop_watering_system()
     print("System recovered and continuing...")
+    
+
+if __name__ == "__main__":
+    print("=== Garden Management System ===")
+    plants = [Plant("Rose"), Plant("Cherry"), Plant("Lotus"), Plant("")]
+    test_garden_management(plants)
     print("\nGarden management system test complete!")

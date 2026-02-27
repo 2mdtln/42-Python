@@ -6,7 +6,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/23 17:46:18 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/23 18:15:37 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/02/27 07:38:53 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -27,8 +27,7 @@ def check_plant_health(plant_name: str, water_level: float,
         print(f"Plant '{plant_name}' is healthy!")
 
 
-if __name__ == "__main__":
-    print("=== Garden Plant Health Checker ===")
+def test_plant_checks() -> None:
     print("\nTesting good values...")
     try:
         check_plant_health("Cherry", 1, 6)
@@ -49,4 +48,9 @@ if __name__ == "__main__":
         check_plant_health("Sunflower", 1, 0)
     except ValueError as e:
         print(f"Error: {e}")
+    
+
+if __name__ == "__main__":
+    print("=== Garden Plant Health Checker ===")
+    test_plant_checks()
     print("\nAll error raising tests completed!")

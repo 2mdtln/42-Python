@@ -6,7 +6,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/21 22:17:40 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/26 10:39:44 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/02/27 07:31:55 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -50,8 +50,7 @@ def check_water(amount: int) -> None:
         print("Water amount is just right!")
 
 
-if __name__ == "__main__":
-    print("=== Custom Garden Errors Demo ===")
+def test_custom_errors() -> None:
     print("\nTesting PlantError...")
     try:
         lotus = Plant("Lotus", "healthy")
@@ -72,4 +71,9 @@ if __name__ == "__main__":
         check_water(42)
     except GardenError as e:
         print(f"Caught a garden error: {e}")
+    
+
+if __name__ == "__main__":
+    print("=== Custom Garden Errors Demo ===")
+    test_custom_errors()
     print("\nAll custom error types work correctly!")
