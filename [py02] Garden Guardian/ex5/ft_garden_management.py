@@ -6,7 +6,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/23 18:13:37 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/27 07:51:15 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/02/28 10:19:25 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -14,15 +14,11 @@ class GardenError(Exception):
     pass
 
 
-class InvalidPlantError(GardenError):
+class PlantError(GardenError):
     pass
 
 
 class WaterError(GardenError):
-    pass
-
-
-class PlantHealthError(GardenError):
     pass
 
 
@@ -48,20 +44,20 @@ class Plant:
     def get_sun_level(self) -> float:
         return self.__sun_level
 
-    def check_health(self) -> None:
+    def check_plant_health(self) -> None:
         if not self.__name:
-            raise PlantHealthError("Plant name cannot be empty!")
+            raise PlantError("Plant name cannot be empty!")
         elif self.__water_level > 10:
-            raise PlantHealthError(f"Water level {self.__water_level}"
+            raise PlantError(f"Water level {self.__water_level}"
                                    f" is too high (max 10)")
         elif self.__water_level < 1:
-            raise PlantHealthError(f"Water level {self.__water_level}"
+            raise PlantError(f"Water level {self.__water_level}"
                                    f" is too low (min 1)")
         elif self.__sun_level < 2:
-            raise PlantHealthError(f"Sunlight hours {self.__sun_level}"
+            raise PlantError(f"Sunlight hours {self.__sun_level}"
                                    f" is too low (min 2)")
         elif self.__sun_level > 12:
-            raise PlantHealthError(f"Sunlight hours {self.__sun_level} "
+            raise PlantError(f"Sunlight hours {self.__sun_level} "
                                    f"is too high (max 12)")
         else:
             print(f"{self.__name}: healthy (water: "
@@ -76,7 +72,7 @@ class GardenManager:
     @classmethod
     def add_plant(cls, plant: Plant) -> None:
         if not plant.get_name():
-            raise InvalidPlantError("Plant name cannot be empty!")
+            raise PlantError("Plant name cannot be empty!")
         cls._plants = cls._plants + [plant]
         print(f"Added {plant.get_name()} successfully")
 
@@ -91,7 +87,7 @@ class GardenManager:
         print("Closing watering system (cleanup)")
 
     @classmethod
-    def day_passes(cls) -> None:
+    def water_plants(cls) -> None:
         for plant in cls._plants:
             plant.sun()
             if cls._is_watering:
@@ -110,13 +106,13 @@ def test_garden_management(plants: Plant) -> None:
     for plant in plants:
         try:
             GardenManager.add_plant(plant)
-        except InvalidPlantError as e:
+        except PlantError as e:
             print(f"Error adding plant: {e}")
     print("\nWatering plants...")
     try:
         GardenManager.start_watering_system()
         for _ in range(1):
-            GardenManager.day_passes()
+            GardenManager.water_plants()
     except GardenError as e:
         print(f"Error watering plants: {e}")
     finally:
@@ -124,13 +120,13 @@ def test_garden_management(plants: Plant) -> None:
     print("\nChecking plant health...")
     for plant in GardenManager.get_plants():
         try:
-            plant.check_health()
-        except PlantHealthError as e:
+            plant.check_plant_health()
+        except PlantError as e:
             print(f"Error checking {plant.get_name()}: {e}")
     print("\nTesting error recovery...")
     try:
         GardenManager.start_watering_system()
-        GardenManager.day_passes()
+        GardenManager.water_plants()
     except GardenError as e:
         print(f"Error watering plants: {e}")
     finally:
