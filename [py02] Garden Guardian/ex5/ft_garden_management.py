@@ -6,7 +6,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/23 18:13:37 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/28 10:19:25 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/03/02 10:17:48 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -49,16 +49,16 @@ class Plant:
             raise PlantError("Plant name cannot be empty!")
         elif self.__water_level > 10:
             raise PlantError(f"Water level {self.__water_level}"
-                                   f" is too high (max 10)")
+                             f" is too high (max 10)")
         elif self.__water_level < 1:
             raise PlantError(f"Water level {self.__water_level}"
-                                   f" is too low (min 1)")
+                             f" is too low (min 1)")
         elif self.__sun_level < 2:
             raise PlantError(f"Sunlight hours {self.__sun_level}"
-                                   f" is too low (min 2)")
+                             f" is too low (min 2)")
         elif self.__sun_level > 12:
             raise PlantError(f"Sunlight hours {self.__sun_level} "
-                                   f"is too high (max 12)")
+                             f"is too high (max 12)")
         else:
             print(f"{self.__name}: healthy (water: "
                   f"{self.__water_level}, sun: {self.__sun_level})")
@@ -132,7 +132,7 @@ def test_garden_management(plants: Plant) -> None:
     finally:
         GardenManager.stop_watering_system()
     print("System recovered and continuing...")
-    
+
 
 if __name__ == "__main__":
     print("=== Garden Management System ===")

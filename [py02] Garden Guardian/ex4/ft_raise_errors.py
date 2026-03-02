@@ -6,7 +6,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/23 17:46:18 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/27 07:38:53 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/03/02 10:17:17 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -48,7 +48,7 @@ def test_plant_checks() -> None:
         check_plant_health("Sunflower", 1, 0)
     except ValueError as e:
         print(f"Error: {e}")
-    
+
 
 if __name__ == "__main__":
     print("=== Garden Plant Health Checker ===")
