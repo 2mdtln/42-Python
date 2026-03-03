@@ -6,7 +6,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/26 12:47:20 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/26 14:57:01 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/02/28 11:38:01 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -19,7 +19,7 @@ def distance(pos1: int, pos2: int) -> float:
     return math.sqrt((x2-x1)**2 + (y2-y1)**2 + (z2-z1)**2)
 
 
-def parse_and_distance(pos_str: , distance_from) -> None:
+def parse_and_distance(pos_str: tuple, distance_from: tuple) -> None:
     try:
         x, y, z = map(int, pos_str.split(","))
         print(f"Parsed position: {(x, y, z)}")
@@ -31,18 +31,21 @@ def parse_and_distance(pos_str: , distance_from) -> None:
               f"Type: {e.__class__.__name__}, Args: (\"{e}\",)")
 
 
-def main():
+def main() -> None:
     pos = tuple((10, 20, 5))
     spawn_point = tuple((0, 0, 0))
     print(f"Position created: {pos}")
     print(f"Distance between {spawn_point} and "
           f"{pos}: {distance(pos, spawn_point):.2f}\n")
+
     parse_pos = "3,4,0"
     print(f"Parsing coordinates: {parse_pos}")
     parse_and_distance(parse_pos, spawn_point)
+
     parse_pos = "3,one,0"
     print(f"Parsing invalid coordinates: \"{parse_pos}\"")
     parse_and_distance(parse_pos, spawn_point)
+
     print("\nUnpacking demonstration:")
     x, y, z = pos
     print(f"Player at x={x}, y={y}, z={z}")
