@@ -6,7 +6,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/03/04 17:54:08 by mtaheri            #+#    #+#             #
-#   Updated: 2026/03/06 17:54:23 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/03/06 18:16:22 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -21,7 +21,7 @@ class Item:
         self.__quantity = quantity
         self.__value = value
 
-    def get_val(self, get: str) -> any:
+    def get_val(self, get: str) -> object:
         return {
             "name": self.__name,
             "type": self.__type,
@@ -30,7 +30,7 @@ class Item:
         }.get(get, "???")
 
     @classmethod
-    def get_type(_, name: str) -> str:
+    def get_type(cls, name: str) -> str:
         if name == "potion":
             return "Moderate"
         elif name in ("sword", "shield", "armor", "helmet"):
@@ -69,7 +69,7 @@ class Player:
         self.__inventory.add_item(item)
 
 
-def parse(player: Player):
+def parse(player: Player) -> None:
     for arg in sys.argv[1:]:
         parts = arg.split(":")
         if len(parts) == 2:
@@ -77,14 +77,14 @@ def parse(player: Player):
                                int(parts[1]), int(parts[1]) * 8.3))
 
 
-def total_items(player_inventory):
-    total_items = 0
+def total_items(player_inventory: dict) -> int:
+    count = 0
     for item_name, item_data in player_inventory.items():
-        total_items += item_data['quantity']
-    return total_items
+        count += item_data['quantity']
+    return count
 
 
-def get_category_items(category: str, player_inventory):
+def get_category_items(category: str, player_inventory: dict) -> dict:
     category_items = dict()
     for item in player_inventory.keys():
         if player_inventory[item]["type"] == category:
@@ -92,7 +92,7 @@ def get_category_items(category: str, player_inventory):
     return category_items
 
 
-def get_categories(player_inventory) -> list:
+def get_categories(player_inventory: dict) -> list:
     categories = dict()
     for item in player_inventory:
         item_type = player_inventory[item]["type"]
@@ -100,7 +100,7 @@ def get_categories(player_inventory) -> list:
     return list(categories.keys())
 
 
-def get_stats(player_inventory):
+def get_stats(player_inventory: dict) -> tuple:
     most_item = None
     most_qty = 0
     least_item = None
@@ -116,7 +116,8 @@ def get_stats(player_inventory):
     return most_item, most_qty, least_item, least_qty
 
 
-def get_restock_needed(player_inventory, restock_threshold=1):
+def get_restock_needed(player_inventory: dict,
+                       restock_threshold: int) -> list[str]:
     restock_list = []
     for item in player_inventory:
         qty = player_inventory.get(item).get("quantity")
@@ -125,20 +126,24 @@ def get_restock_needed(player_inventory, restock_threshold=1):
     return restock_list
 
 
-def main(player_inventory):
+def main(player_inventory: dict) -> None:
     print("=== Inventory System Analysis ===")
-    print(f"Total items in inventory: {total_items(player_inventory)}")
+    total = total_items(player_inventory)
+    print(f"Total items in inventory: {total}")
     print(f"Unique item types: {len(player_inventory)}")
 
     print("\n=== Current Inventory ===")
     for item in player_inventory.keys():
-        print(f"{item}: {player_inventory.get(item).get("quantity")} "
-              f"unit ({player_inventory.get(item).get("value"):.2f}%)")
+        qty = player_inventory.get(item).get("quantity")
+        percentage = (qty / total) * 100
+        print(f"{item}: {qty} unit{'s' if qty > 1 else ''} "
+              f"({percentage:.1f}%)")
 
     print("\n=== Inventory Statistics ===")
     most_item, most_qty, least_item, least_qty = get_stats(player_inventory)
     print(f"Most abundant: {most_item} ({most_qty} units)")
-    print(f"Least abundant: {least_item} ({least_qty} unit)")
+    print(f"Least abundant: {least_item} ({least_qty} "
+          f"unit{'s' if least_qty > 1 else ''})")
 
     print("\n=== Item Categories ===")
     for category in get_categories(player_inventory):
@@ -146,7 +151,7 @@ def main(player_inventory):
 
     print("\n=== Management Suggestions ===")
     result = "Restock needed: "
-    for item in get_restock_needed(player_inventory):
+    for item in get_restock_needed(player_inventory, 1):
         result = result + item + ", "
     print(result[:-2])
 
