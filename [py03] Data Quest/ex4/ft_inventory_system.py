@@ -7,7 +7,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/03/04 17:54:08 by mtaheri            #+#    #+#             #
-#   Updated: 2026/03/08 12:02:02 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/03/08 18:53:15 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -29,14 +29,14 @@ def ft_split(text: str, separator: str) -> list[str]:
 
 
 # there is no Authorized: int()
-def ft_atoi(text: str) -> int:
+def ft_atoi(text: str) -> int | None:
     if text == "":
-        raise ValueError("invalid")
+        return None
     sign = 1
     index = 0
     if text[0] in ("+", "-"):
         if len(text) == 1:
-            raise ValueError("invalid")
+            return None
         sign = -1 if text[0] == "-" else 1
         index = 1
     number = 0
@@ -49,7 +49,7 @@ def ft_atoi(text: str) -> int:
                 break
             digit += 1
         if found is False:
-            raise ValueError("invalid")
+            return None
         number = (number * 10) + digit
         index += 1
     return sign * number
@@ -116,6 +116,8 @@ def parse(player: Player) -> None:
         parts = ft_split(arg, ":")
         if len(parts) == 2:
             quantity = ft_atoi(parts[1])
+            if quantity is None:
+                continue
             player.pickup(Item(parts[0], Item.get_type(parts[0]),
                                quantity, quantity * 8.3))
 
@@ -208,7 +210,7 @@ def main(player_inventory: dict) -> None:
     values_str = ""
     for item in player_inventory:
         qty = player_inventory[item].get("quantity")
-        values_str = values_str + str(qty) + ", "
+        values_str += f"{qty}, "
     values_str = values_str[:-2]
     print(f"Dictionary values: {values_str}")
 

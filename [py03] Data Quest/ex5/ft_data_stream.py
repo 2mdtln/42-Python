@@ -7,7 +7,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/03/06 18:17:47 by mtaheri            #+#    #+#             #
-#   Updated: 2026/03/08 11:00:42 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/03/08 18:54:33 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -114,7 +114,7 @@ def main() -> None:
     print("\n=== Memory Efficiency Comparison ===")
     print("Method 1: store everything (list)")
 #    list_start = time.time()
-    all_events = list(event_stream(num_events))
+    all_events = [event_stream(num_events)]
 #    list_time = time.time() - list_start
     print(f"- Events kept in RAM: {len(all_events)}")
 #    print(f"- Time: {list_time:.6f} seconds")
