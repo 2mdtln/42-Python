@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # *************************************************************************** #
 #                                                                             #
 #                                                         :::      ::::::::   #
@@ -6,7 +7,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/26 11:55:51 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/26 12:50:03 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/03/08 11:07:47 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -29,7 +30,7 @@ def main() -> None:
         print(f"Scores processed: {arguments}")
         print(f"Total players: {i}")
         print(f"Total score: {sum(arguments)}")
-        print(f"Average score: {sum(arguments) / i}")
+        print(f"Average score: {(sum(arguments) / i):g}")
         print(f"High score: {max(arguments)}")
         print(f"Low score: {min(arguments)}")
         print(f"Score range: {max(arguments) - min(arguments)}")

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # *************************************************************************** #
 #                                                                             #
 #                                                         :::      ::::::::   #
@@ -6,7 +7,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/26 12:47:20 by mtaheri            #+#    #+#             #
-#   Updated: 2026/02/28 11:38:01 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/03/08 11:20:19 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -21,7 +22,10 @@ def distance(pos1: int, pos2: int) -> float:
 
 def parse_and_distance(pos_str: tuple, distance_from: tuple) -> None:
     try:
-        x, y, z = map(int, pos_str.split(","))
+        parts = pos_str.split(",")
+        x = int(parts[0])
+        y = int(parts[1])
+        z = int(parts[2])
         print(f"Parsed position: {(x, y, z)}")
         print(f"Distance between {distance_from} "
               f"and {(x, y, z)}: {distance((x, y, z), distance_from):.1f}\n")

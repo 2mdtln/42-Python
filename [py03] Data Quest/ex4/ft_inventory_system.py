@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # *************************************************************************** #
 #                                                                             #
 #                                                         :::      ::::::::   #
@@ -6,11 +7,52 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/03/04 17:54:08 by mtaheri            #+#    #+#             #
-#   Updated: 2026/03/06 18:16:22 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/03/08 12:02:02 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
 import sys
+
+
+# there is no Authorized: split()
+def ft_split(text: str, separator: str) -> list[str]:
+    words = []
+    word = ""
+    for char in text:
+        if char == separator:
+            words = words + [word]
+            word = ""
+        else:
+            word += char
+    words = words + [word]
+    return words
+
+
+# there is no Authorized: int()
+def ft_atoi(text: str) -> int:
+    if text == "":
+        raise ValueError("invalid")
+    sign = 1
+    index = 0
+    if text[0] in ("+", "-"):
+        if len(text) == 1:
+            raise ValueError("invalid")
+        sign = -1 if text[0] == "-" else 1
+        index = 1
+    number = 0
+    while index < len(text):
+        digit = 0
+        found = False
+        while digit < 10:
+            if text[index] == "0123456789"[digit]:
+                found = True
+                break
+            digit += 1
+        if found is False:
+            raise ValueError("invalid")
+        number = (number * 10) + digit
+        index += 1
+    return sign * number
 
 
 class Item:
@@ -71,10 +113,11 @@ class Player:
 
 def parse(player: Player) -> None:
     for arg in sys.argv[1:]:
-        parts = arg.split(":")
+        parts = ft_split(arg, ":")
         if len(parts) == 2:
+            quantity = ft_atoi(parts[1])
             player.pickup(Item(parts[0], Item.get_type(parts[0]),
-                               int(parts[1]), int(parts[1]) * 8.3))
+                               quantity, quantity * 8.3))
 
 
 def total_items(player_inventory: dict) -> int:
@@ -97,7 +140,7 @@ def get_categories(player_inventory: dict) -> list:
     for item in player_inventory:
         item_type = player_inventory[item]["type"]
         categories[item_type] = None
-    return list(categories.keys())
+    return [*categories.keys()]
 
 
 def get_stats(player_inventory: dict) -> tuple:
