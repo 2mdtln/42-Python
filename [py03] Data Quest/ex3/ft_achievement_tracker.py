@@ -7,7 +7,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/02/26 16:32:52 by mtaheri            #+#    #+#             #
-#   Updated: 2026/03/08 11:00:26 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/03/11 15:22:32 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -20,7 +20,7 @@ class Player:
         return self.achievements
 
 
-def main():
+def main() -> None:
     print("=== Achievement Tracker System ===")
     print()
     players = [

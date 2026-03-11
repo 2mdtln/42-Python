@@ -7,7 +7,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/03/06 18:17:47 by mtaheri            #+#    #+#             #
-#   Updated: 2026/03/08 18:54:33 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/03/11 15:34:57 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -19,6 +19,7 @@ players = ["mtaheri", "ybarut", "aldinc", "miskirik", "root"]
 projects = ["libft", "printf", "get_next_line", "push_sawap"]
 
 
+# Generator[yield type, send() type, return type]
 def event_stream(num_events: int) -> Generator[dict, None, None]:
     for index in range(num_events):
         player = players[index % len(players)]
@@ -44,16 +45,6 @@ def fibonacci_generator(count: int) -> Generator[int, None, None]:
         first, second = second, first + second
 
 
-def prime_generator(count: int) -> Generator[int, None, None]:
-    found = 0
-    candidate = 2
-    while found < count:
-        if is_prime(candidate):
-            yield candidate
-            found += 1
-        candidate += 1
-
-
 def is_prime(number: int) -> bool:
     if number < 2:
         return False
@@ -63,6 +54,16 @@ def is_prime(number: int) -> bool:
             return False
         divisor += 1
     return True
+
+
+def prime_generator(count: int) -> Generator[int, None, None]:
+    found = 0
+    candidate = 2
+    while found < count:
+        if is_prime(candidate):
+            yield candidate
+            found += 1
+        candidate += 1
 
 
 def generator_to_comma(values: Generator[int, None, None]) -> str:
