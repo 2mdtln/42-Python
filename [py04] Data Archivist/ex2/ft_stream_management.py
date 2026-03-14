@@ -6,21 +6,26 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/03/13 21:25:47 by mtaheri            #+#    #+#             #
-#   Updated: 2026/03/13 22:31:54 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/03/14 11:36:07 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
 import sys
 
 
-def ft_input(prompt: str) -> str:
-    print(prompt, end="", flush=True)
-    input_str = sys.stdin.readline()
+def check_null_input(input_str: str) -> None:
     if not input_str:
         sys.stderr.write("\nERROR: stdin empty\n")
         sys.exit(1)
+
+
+def ft_input(prompt: str) -> str:
+    print(prompt, end="", flush=True)
+    input_str = sys.stdin.readline()
+    check_null_input(input_str)
     if input_str[-1] == '\n':
         input_str = input_str[:-1]
+        check_null_input(input_str)
     else:
         sys.stdout.write("\n")
     return input_str
