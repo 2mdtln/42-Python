@@ -6,7 +6,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/03/13 20:31:34 by mtaheri            #+#    #+#             #
-#   Updated: 2026/03/13 20:49:22 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/03/14 13:03:39 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -17,7 +17,7 @@ def main() -> None:
     try:
         file = open(file_name, "r")
     except FileNotFoundError:
-        print("ERROR: Storage vault not found.")
+        print("ERROR: Storage vault not found. Run data generator first.")
         return
 
     try:

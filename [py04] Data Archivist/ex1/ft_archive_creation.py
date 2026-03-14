@@ -6,7 +6,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/03/13 20:49:59 by mtaheri            #+#    #+#             #
-#   Updated: 2026/03/13 21:24:40 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/03/14 13:08:44 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -18,7 +18,7 @@ def main() -> None:
     print(f"Initializing new storage unit: {file_name}")
 
     try:
-        file = open(file_name, "x")
+        file = open(file_name, "w")
     except FileExistsError:
         print("ERROR: file exists")
         return
@@ -26,7 +26,7 @@ def main() -> None:
           "Inscribing preservation data...")
 
     try:
-        file.writelines(content_to_write)
+        file.write(content_to_write)
         print(content_to_write)
     except Exception as e:
         print(f"ERROR: {e}")
