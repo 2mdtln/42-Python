@@ -6,7 +6,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/03/24 14:13:41 by mtaheri            #+#    #+#             #
-#   Updated: 2026/03/25 23:08:58 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/03/25 23:22:44 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -54,8 +54,7 @@ class DataProcessor(ABC):
     @abstractmethod
     def validate(self, data: Any) -> bool: ...
 
-    def format_output(self, result: str) -> str:
-        return result
+    def format_output(self, result: str) -> str: return result
 
 
 class NumericProcessor(DataProcessor):
@@ -84,7 +83,7 @@ class TextProcessor(DataProcessor):
         return f"Processed text: {char_count} characters, {word_count} words"
 
     def validate(self, data: Any) -> bool:
-        return isinstance(data, str)
+        return True
 
     def format_output(self, result: str) -> str:
         return super().format_output(result)
