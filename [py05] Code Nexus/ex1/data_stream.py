@@ -6,7 +6,7 @@
 #   By: mtaheri <mtaheri@student.42istanbul.com.tr> +#+  +:+       +#+        #
 #                                                 +#+#+#+#+#+   +#+           #
 #   Created: 2026/03/25 23:17:42 by mtaheri            #+#    #+#             #
-#   Updated: 2026/03/26 13:39:32 by mtaheri           ###   ########.fr       #
+#   Updated: 2026/03/26 13:59:45 by mtaheri           ###   ########.fr       #
 #                                                                             #
 # *************************************************************************** #
 
@@ -161,11 +161,18 @@ class StreamProcessor:
             if i < ft_len(batches):
                 batch = batches[i]
                 stream.process_batch(batch)
-                print(f"- {stream.get_stats()['type']} "
-                      f"data: {ft_len(batch)} operations processed")
+                stream_type = stream.get_stats()['type']
+                if stream_type == "Sensor":
+                    suffix = "readings processed"
+                elif stream_type == "Event":
+                    suffix = "events processed"
+                else:
+                    suffix = "operations processed"
+                print(f"- {stream_type} data: {ft_len(batch)} {suffix}")
             i += 1
 
     def filter_all(self, batches: List[List[Any]], criteria: str) -> None:
+        parts = []
         i = 0
         while i < ft_len(self.streams):
             stream = self.streams[i]
@@ -174,13 +181,20 @@ class StreamProcessor:
                 filtered = stream.filter_data(batch, criteria)
                 if ft_len(filtered) > 0:
                     stream_type = stream.get_stats()['type']
-                    if stream_type == "sensor":
-                        print(f"- {ft_len(filtered)} critical sensor alerts")
-                    elif stream_type == "transaction":
-                        print(f"- {ft_len(filtered)} large transaction")
-                    elif stream_type == "event":
-                        print(f"- {ft_len(filtered)} critical event")
+                    if stream_type == "Sensor":
+                        parts += [f"{ft_len(filtered)} critical sensor alerts"]
+                    elif stream_type == "Transaction":
+                        parts += [f"{ft_len(filtered)} large transaction"]
             i += 1
+        if parts:
+            result = ""
+            i = 0
+            while i < ft_len(parts):
+                result += parts[i]
+                if i < ft_len(parts) - 1:
+                    result += ", "
+                i += 1
+            print("Filtered results: " + result)
 
 
 def main() -> None:
@@ -224,9 +238,8 @@ def main() -> None:
                            ["login", "logout", "error"]])
 
     print("\nStream filtering active: High-priority data only")
-    print("Filtered results:")
-    processor.filter_all([["temp:25.5", "humidity:70"],
-                          ["buy:500", "sell:600"],
+    processor.filter_all([["critical:25.5", "critical:70"],
+                          ["buy:500critical", "sell:600"],
                           ["error", "critical"]],
                          "critical")
 
