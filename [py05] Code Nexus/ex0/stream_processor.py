@@ -134,9 +134,9 @@ def main() -> None:
     print("\n=== Polymorphic Processing Demo ===")
     print("Processing multiple data types through same interface...\n")
 
-    processors: List[DataProcessor] = [processors_list[1],
-                                       processors_list[2],
-                                       processors_list[3]]
+    processors: List[DataProcessor] = [processors_list[0][0],
+                                       processors_list[1][0],
+                                       processors_list[2][0]]
     test_data: List[Any] = [[1, 2, 3],
                             "Hello Code",
                             "INFO: System ready"]
