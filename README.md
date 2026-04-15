@@ -12,3 +12,4 @@
 | [py07] DataDeck        |   3.0   |
 | [py08] The Matrix      |   3.0   |
 | [py09] Cosmic Data     |   3.0   |
+| [py10] FuncMage        |   3.0   |
